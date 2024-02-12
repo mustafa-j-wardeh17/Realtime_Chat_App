@@ -16,12 +16,12 @@ const ChatSide = () => {
 
 
   return (
-    <div className='w-[500px] h-full'>
+    <div className={`${!selectedConversation&&'md:flex md:flex-col hidden h-full'} lg:w-[600px] md:w-[500px] w-full  `}>
       {
         !selectedConversation  ? (
           <NoChatSelected />
         ) : (
-          <div className='flex flex-col w-full h-full relative  border-l-[1.5px] border-[#676869]'>
+          <div className='flex flex-col w-full h-full relative  md:border-l-[1.5px] md:border-[#676869]'>
             <ChatHeader />
             <div className='w-full flex-1 overflow-auto'>
               <ChatContainer />

@@ -12,8 +12,8 @@ const Login = () => {
         await login({ email, password })
     }
     return (
-        <div className='relative glassmorphism flex flex-col items-center space-y-4'>
-            <div className={`${!loading&&'hidden'} absolute w-[60px] h-[60px] bg-gray-400 
+        <div className='relative glassmorphism flex flex-col items-center sm:space-y-4 space-y-6'>
+            <div className={`${!loading&&'hidden'} absolute sm:w-[60px] sm:h-[60px] w-[30px] h-[30px] bg-gray-400 
             translate-x-[50%] right-[50%] top-[50%] -translate-y-[50%] loading`} />
             <h1 className='text-4xl text-white font-bold tracking-wide'>
                 Login {''}
