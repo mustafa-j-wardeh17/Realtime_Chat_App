@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 const verifyToken = (req, res, next) => {
-    const token = req.cookies.token
+    const token = req.cookies.jwt
     if (!token) {
         return res.status(401).json({
             msg: "User not autherized"
@@ -15,7 +15,7 @@ const verifyToken = (req, res, next) => {
                 msg: "User not autherized"
             })
         }
-        req.userId = decoded.id
+        req.userId = decoded.userId
         next()
     }
     catch (error) {

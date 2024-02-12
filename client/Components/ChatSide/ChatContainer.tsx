@@ -1,25 +1,45 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import ChatMessage from './ChatMessage'
+import useGetMessages from '@/hooks/useGetMessages'
+import MessageSkeleton from './Skeleton';
+import useListenMessage from '@/hooks/useListenMessage';
 
+
+type Message = {
+  _id:string,
+  senderId: string,
+  receiverId: string,
+  message: string,
+  createdAt: Date
+};
 const ChatContainer = () => {
-  const messages = [
-    {message:'Hi There',isMe:true},
-    {message:'Hi There',isMe:false},
-    {message:'Hi There',isMe:true},
-    {message:'Hi There',isMe:false},
-    {message:'Hi There Today I wILL Go To University At 2:00 PM',isMe:false},
-    {message:'Hi There Today I wILL Go To University At 2:00 PM',isMe:false},
-    {message:'Hi There Today I wILL Go To University At 2:00 PM',isMe:true},
-  ]
+  const { messages, loading } = useGetMessages()
+  const lastMessageRef = useRef<any>();
+  useListenMessage()
+  
+	useEffect(() => {
+		setTimeout(() => {
+			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+		}, 100);
+	}, [messages]);
   return (
     <div className='flex flex-1 flex-col p-2 overflow-auto'>
-      {
-        messages.map((item,index)=>(
-          <ChatMessage message={item.message} isMe={item.isMe} />
-        ))
-      }
+      {!loading &&
+        messages.length > 0 &&
+        messages.map((message:Message,index:number) => (
+          <div key={index} ref={lastMessageRef}>
+            <ChatMessage message={message} />
+          </div>
+        ))}
+
+      {loading && [...Array(3)].map((item, idx) => <MessageSkeleton key={idx} />)}
+      {!loading && messages.length === 0 && (
+        <p className='text-center'>Send a message to start the conversation</p>
+      )}
     </div>
   )
 }
 
 export default ChatContainer
+
+

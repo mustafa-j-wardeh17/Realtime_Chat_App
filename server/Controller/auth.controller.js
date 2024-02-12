@@ -20,23 +20,31 @@ export const signupController = async (req, res) => {
         }
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
-        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${fullName}`;
-		const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${fullName}`;
+        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?email=${fullName}`;
+		const boyProfilePic = `https://avatar.iran.liara.run/public/boy?email=${fullName}`;
 
         const user = new User({
             email,
             password: hashedPassword,
             fullName,
             gender,
-            publicPic : gender === 'male' ? boyProfilePic : girlProfilePic
+            profilePic : gender === 'male' ? boyProfilePic : girlProfilePic
         })
         // Save the user to the database
         const createdUser = await user.save()
-        const token = jwt.sign({ id: createdUser._id }, process.env.JWT_SECRET_KEY, { expiresIn: '3d' })
-        res.cookie('token', token)
+
+        const token = jwt.sign({ userId:createdUser._id }, process.env.JWT_SECRET_KEY, { expiresIn: "3d" });
+    
+        res.cookie("jwt", token);
+
         res.status(201).json({
             msg: 'User Successfully Registered',
-            userId: createdUser._id
+            data:{
+                _id: createdUser._id,
+				fullName: createdUser.fullName,
+				email: createdUser.email,
+				profilePic: createdUser.profilePic,
+            } 
         });
     }
     catch (error) {
@@ -63,11 +71,21 @@ export const loginController = async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ msg: "Invalid Email Or Password" })
         }
-        const token = jwt.sign({ id: findUser._id }, process.env.JWT_SECRET_KEY, { expiresIn: '3d' })
-        res.cookie('token', token)
+
+        const token = jwt.sign({ userId: findUser._id }, process.env.JWT_SECRET_KEY, { 
+            expiresIn: "3d",
+        });
+    
+        res.cookie("jwt", token);
+
         res.status(201).json({
             msg: 'User Successfully Logged In',
-            userId: findUser._id
+            data:{
+                _id: findUser._id,
+				fullName: findUser.fullName,
+				email: findUser.email,
+				profilePic: findUser.profilePic,
+            }
         });
     }
     catch (error) {
@@ -79,7 +97,7 @@ export const loginController = async (req, res) => {
 //---------------Logout Controller--------------
 //----------------------------------------------
 export const logoutController = (req, res) => {
-    res.clearCookie("token")
+    res.clearCookie("jwt")
     res.status(200).json({
         msg: 'User Logged Out Successfully'
     })
