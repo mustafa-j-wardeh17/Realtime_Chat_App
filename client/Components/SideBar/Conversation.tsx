@@ -33,7 +33,7 @@ const Conversation = ({ index, lastIndx, conversation }: ConversationProps) => {
                 </div>
             </div>
             {
-                index !== lastIndx && (
+                index !== lastIndx-1 && (
                     <div className='divider m-0 p-0 h-1' />
                 )
             }

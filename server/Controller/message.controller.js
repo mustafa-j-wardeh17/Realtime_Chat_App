@@ -59,7 +59,7 @@ export const sendMessage = async (req, res) => {
         await Promise.all([conversation.save(), newMessage.save()]);
 
         const reciverSocketId = getReceiverSocketId(receiverId);
-        io.to(reciverSocketId).emit('getMessage', newMessage)
+        io.to(reciverSocketId).emit('newMessage', newMessage)
         res.status(200).json({
             msg: 'Message Send Succcessfully',
             data: newMessage

@@ -17,14 +17,20 @@ const useLogout = () => {
                 credentials: 'include'
             })
             const data = await res.json()
-            if (!res.ok) {
+            if (res.status === 401) {
+                setAuthUser(null)
+                localStorage.removeItem('chat-user')
+            }
+            else if (!res.ok) {
                 throw new Error(data.msg)
             }
-            localStorage.removeItem("chat-user")
-            setAuthUser(null)
+            else {
+                localStorage.removeItem("chat-user")
+                setAuthUser(null)
+            }
 
         } catch (error: any) {
-            toast.error(error.message)
+            console.log(error.message)
         }
         finally {
             setLoading(false)

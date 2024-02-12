@@ -24,17 +24,17 @@ const Login = () => {
                 onSubmit={(e) => handleSubmit(e)}
             >
                 <div className='w-full flex flex-col space-y-2'>
-                    <label className='pl-1 text-[18px]'>Email</label>
+                    <label className='pl-1 text-slate-300 text-[18px]'>Email</label>
                     <input
                         className='input input-bordered w-full'
                         type='email'
                         placeholder='Email'
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail((e.target.value).trim().toLowerCase())}
                     />
                 </div>
                 <div className='w-full flex flex-col space-y-2'>
-                    <label className='pl-1 text-[18px]'>Password</label>
+                    <label className='pl-1 text-[18px] text-slate-300'>Password</label>
                     <input
                         className='input input-bordered w-full'
                         type='password'
@@ -46,7 +46,7 @@ const Login = () => {
                 <p>Don't have an account{" "}
                     <a
                         href='/register'
-                        className='hover:text-white'
+                        className='hover:text-white text-slate-300'
                     >
                         Sign Up
                     </a>

@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 // Define the type for the context value
 interface AuthContextType {
@@ -22,5 +22,6 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const chat_auth = localStorage.getItem("chat-user")
 	const [authUser, setAuthUser] = useState(chat_auth ? JSON.parse(chat_auth) : null);
+	
 	return <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;
 };

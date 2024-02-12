@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 const useGetMessages = () => {
     const { messages, setMessages, selectedConversation } = useConversation();
-    const {authUser} = useAuthContext()
+    const {setAuthUser} = useAuthContext()
     const [loading, setLoading] = useState(false)
     // Fetch messages from the server and store them in state
     useEffect(() => {
@@ -20,12 +20,16 @@ const useGetMessages = () => {
                     credentials: 'include'
                 })
                 const data = await res.json()
-                if (!res.ok) {
+                if (res.status === 401) {
+                    setAuthUser(null)
+                    localStorage.removeItem('chat-user')
+                }
+                else if (!res.ok) {
                     throw new Error(data.msg)
                 }
-                setMessages(data.data)
+                else setMessages(data.data)
             } catch (error: any) {
-                toast.error(error.message)
+                console.log(error.message)
             }
             finally {
                 setLoading(false)

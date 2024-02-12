@@ -27,7 +27,7 @@ const Register = () => {
                 onSubmit={(e) => { handleSubmit(e) }}
             >
                 <div className='w-full flex flex-col space-y-2'>
-                    <label className='pl-1 text-[18px]'>Full Name</label>
+                    <label className='pl-1 text-slate-300 text-[18px]'>Full Name</label>
                     <input
                         value={fullName}
                         className='input input-bordered w-full'
@@ -37,7 +37,7 @@ const Register = () => {
                     />
                 </div>
                 <div className='w-full flex flex-col space-y-2'>
-                    <label className='pl-1 text-[18px]'>Email</label>
+                    <label className='pl-1 text-slate-300 text-[18px]'>Email</label>
                     <input
                         value={email}
                         className='input input-bordered w-full'
@@ -48,7 +48,7 @@ const Register = () => {
                 </div>
 
                 <div className='w-full flex flex-col space-y-2'>
-                    <label className='pl-1 text-[18px]'>Password</label>
+                    <label className='pl-1 text-slate-300 text-[18px]'>Password</label>
                     <input
                         value={password}
                         className='input input-bordered w-full'
@@ -58,7 +58,7 @@ const Register = () => {
                     />
                 </div>
                 <div className='w-full flex flex-col space-y-2'>
-                    <label className='pl-1 text-[18px]'>Confirm Password</label>
+                    <label className='pl-1 text-slate-300 text-[18px]'>Confirm Password</label>
                     <input
                         value={confirmPassword}
                         className='input input-bordered w-full'
@@ -94,7 +94,7 @@ const Register = () => {
                 <p>Allready have an account ? {" "}
                     <a
                         href='/login'
-                        className='hover:text-white'
+                        className='hover:text-white text-slate-300'
                     >
                         Login
                     </a>

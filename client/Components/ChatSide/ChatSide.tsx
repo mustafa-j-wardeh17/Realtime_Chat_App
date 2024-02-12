@@ -18,7 +18,7 @@ const ChatSide = () => {
   return (
     <div className='w-[500px] h-full'>
       {
-        selectedConversation === null ? (
+        !selectedConversation  ? (
           <NoChatSelected />
         ) : (
           <div className='flex flex-col w-full h-full relative  border-l-[1.5px] border-[#676869]'>
