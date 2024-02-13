@@ -20,10 +20,11 @@ const ChatContainer = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-		}, 100);
+      
+    }, 100);
 	}, [messages]);
   return (
-    <div className='flex flex-1 flex-col p-2 overflow-auto'>
+    <div className='flex flex-1 flex-col mb-2 px-3 py-2 overflow-auto'>
       {!loading &&
         messages.length > 0 &&
         messages.map((message:Message,index:number) => (
