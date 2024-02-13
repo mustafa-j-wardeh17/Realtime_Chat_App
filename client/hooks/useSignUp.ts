@@ -8,13 +8,15 @@ interface signUpProps {
 	password: string;
 	confirmPassword: string;
 	gender: string;
+	setError: (error: string) => void
 }
 const useSignup = () => {
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState('')
 	const { setAuthUser } = useAuthContext();
 
 	const signup = async ({ fullName, email, password, confirmPassword, gender }: signUpProps) => {
-		const success = handleInputErrors({ fullName, email, password, confirmPassword, gender });
+		const success = handleInputErrors({ fullName, email, password, confirmPassword, gender ,setError});
 		if (!success) return;
 
 		setLoading(true);
@@ -28,7 +30,7 @@ const useSignup = () => {
 
 			const data = await res.json();
 			if (res.status === 401) {
-                setAuthUser(null)
+				setAuthUser(null)
 				localStorage.removeItem('chat-user')
 			}
 			else if (!res.ok) {
@@ -41,29 +43,29 @@ const useSignup = () => {
 				toast.success('Account created successfully!');
 			}
 		} catch (error: any) {
-			toast.error(error.message);
+			setError(error.message);
 		} finally {
 			setLoading(false);
 		}
 	};
 
-	return { loading, signup };
+	return { error, loading, signup };
 };
 export default useSignup;
 
-function handleInputErrors({ fullName, email, password, confirmPassword, gender }: signUpProps) {
+function handleInputErrors({ fullName, email, password, confirmPassword, gender,setError }: signUpProps) {
 	if (!fullName || !email || !password || !confirmPassword || !gender) {
-		toast.error("Please fill in all fields");
+		setError("Please fill in all fields");
 		return false;
 	}
 
 	if (password !== confirmPassword) {
-		toast.error("Passwords do not match");
+		setError("Passwords do not match");
 		return false;
 	}
 
 	if (password.length < 6) {
-		toast.error("Password must be at least 6 characters");
+		setError("Password must be at least 6 characters");
 		return false;
 	}
 

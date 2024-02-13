@@ -1,6 +1,7 @@
 'use client'
 import useLogin from '@/hooks/useLogin'
 import React, { useState } from 'react'
+import { CiWarning } from "react-icons/ci";
 
 const Login = () => {
     const { error, login, loading } = useLogin()
@@ -43,6 +44,14 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
+                {
+                    error !== ''&&(
+                        <div className='flex space-x-1 items-center text-[12px] text-red-500'>
+                            <CiWarning size={20} />
+                            <p>{error}</p>
+                        </div>
+                    )
+                }
                 <p>Don't have an account{" "}
                     <a
                         href='/register'

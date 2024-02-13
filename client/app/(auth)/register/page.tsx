@@ -2,10 +2,10 @@
 import useSignup from '@/hooks/useSignUp'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import { CiWarning } from 'react-icons/ci'
 
 const Register = () => {
-    const { loading, signup } = useSignup()
-    const [error, setError] = useState('')
+    const { error,loading, signup } = useSignup()
     const [gender, setGender] = useState<'male' | 'female'>('male')
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
@@ -91,6 +91,14 @@ const Register = () => {
                         </label>
                     </div>
                 </div>
+                {
+                    error !== ''&&(
+                        <div className='flex space-x-1 items-center text-[12px] text-red-500'>
+                            <CiWarning size={20} />
+                            <p>{error}</p>
+                        </div>
+                    )
+                }
                 <p>Allready have an account ? {" "}
                     <a
                         href='/login'

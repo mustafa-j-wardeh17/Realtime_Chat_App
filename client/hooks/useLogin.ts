@@ -5,6 +5,7 @@ import { useAuthContext } from "../context/authContext";
 interface loginProps {
 	email: string;
 	password: string;
+	setError:(error:string) => void
 }
 const useLogin = () => {
 	const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ const useLogin = () => {
 	const { setAuthUser } = useAuthContext();
 
 	const login = async ({ email, password }: loginProps) => {
-		const success = handleInputErrors({ email, password });
+		const success = handleInputErrors({ email, password,setError });
 		if (!success) return;
 
 		setLoading(true);
@@ -48,14 +49,14 @@ const useLogin = () => {
 };
 export default useLogin;
 
-function handleInputErrors({ email, password }: loginProps) {
+function handleInputErrors({ email, password,setError }: loginProps) {
 	if (!email || !password) {
-		toast.error("Please fill in all fields");
+		setError("Please fill in all fields");
 		return false;
 	}
 
 	if (password.length < 6) {
-		toast.error("Password must be at least 6 characters");
+		setError("Password must be at least 6 characters");
 		return false;
 	}
 
