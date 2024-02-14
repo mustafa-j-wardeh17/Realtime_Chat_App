@@ -20,8 +20,15 @@ export const useAuthContext = () => {
 };
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
-	const chat_auth = localStorage.getItem("chat-user")
-	const [authUser, setAuthUser] = useState(chat_auth ? JSON.parse(chat_auth) : null);
-	
+	const [authUser, setAuthUser] = useState(null);
+  
+	useEffect(() => {
+	  const chat_auth = localStorage.getItem("chat-user");
+	  if (chat_auth) {
+		setAuthUser(JSON.parse(chat_auth));
+	  }
+	}, []); 
+  
 	return <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;
-};
+  };
+  

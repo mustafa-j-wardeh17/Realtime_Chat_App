@@ -104,51 +104,6 @@ export const logoutController = (req, res) => {
 }
 
 
-
-//----------------------------------------------
-//---------------OAuth Controller---------------
-//----------------------------------------------
-export const OAuthLogin = async (req, res) => {
-    try {
-        const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '3d' })
-        res.cookie('token', token)
-        res.redirect('http://localhost:3000/login/success')
-    }
-    catch (error) {
-        return res.status(500).json({ msg: 'Something went wrong oops' })
-    }
-}
-//----------------------------------------------
-//---------------OAuth Controller---------------
-//----------------------------------------------
-export const VerifyOAuth = (req, res) => {
-    try {
-        return res.status(200).json({ msg: 'User Authenticated Successfully' })
-    }
-    catch (error) {
-        return res.status(500).json({ msg: 'Something went wrong oops' })
-    }
-}
-
-export const DeleteUserController = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const deletedUser = await User.findByIdAndDelete(id)
-        if (!deletedUser) {
-            return res.status(400).json({ msg: "No User Found With This Id" })
-        }
-        res.clearCookie("token")
-
-        res.status(200).json({ msg: `User Has Been Deleted Succesfully` })
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({ msg: "Internal Server Error" })
-    }
-}
-
-
-
 export const checkAuthentication = (req, res) => {
     if (!req.userId) {
         res.redirect('http://localhost:3001/login')
