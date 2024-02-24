@@ -30,7 +30,6 @@ The frontend of this application is built using Next.js, React, and Tailwind CSS
 
 - `next`: For server-side rendering and routing.
 - `react`: For building user interfaces.
-- `react-dom`: For rendering React components in the DOM.
 - `react-hot-toast`: For displaying toast notifications.
 - `react-icons`: For including icons in the user interface.
 - `socket.io-client`: For connecting to the Socket.IO server in the backend.
