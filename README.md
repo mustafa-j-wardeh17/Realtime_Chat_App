@@ -41,7 +41,9 @@ The frontend of this application is built using Next.js, React, and Tailwind CSS
 ## Installation
 
 1. Clone the repository:
-
+```
+git clone <repository-url>
+```
 
 2. Install dependencies for both frontend and backend:
 
