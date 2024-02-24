@@ -42,7 +42,7 @@ The frontend of this application is built using Next.js, React, and Tailwind CSS
 
 1. Clone the repository:
 ```
-git clone <repository-url>
+git clone https://github.com/mustafawardeh/Realtime_Chat_App.git
 ```
 
 2. Install dependencies for both frontend and backend:
