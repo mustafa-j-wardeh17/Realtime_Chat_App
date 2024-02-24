@@ -24,7 +24,7 @@ export default function Home() {
 		}
 	}, [authUser])
 	return (
-		<div className={`${inter.variable} relative flex  lg:h-[650px] lg:w-[1000px] md:w-[800px] md:h-[1100px] w-full h-screen lg:p-0  rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0`}>
+		<div className={`${inter.variable} relative flex  lg:h-5/6 lg:w-[1000px] md:w-[800px] md:h-[1000px] w-full h-screen lg:p-0  rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10`}>
 			{
 				loading ? <Loading /> :
 					(<div className={` flex w-full h-full `}>

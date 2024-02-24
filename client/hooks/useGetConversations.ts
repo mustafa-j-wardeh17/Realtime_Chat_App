@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const useGetConversations = () => {
 	const [loading, setLoading] = useState(false);
 	const [conversations, setConversations] = useState([]);
-	const { messages } = useConversation()
+	const { messages ,setMessages} = useConversation()
 	const { setAuthUser } = useAuthContext()
 	useEffect(() => {
 		const getConversations = async () => {

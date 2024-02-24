@@ -5,6 +5,10 @@ import { useAuthContext } from "../context/authContext";
 interface loginProps {
 	email: string;
 	password: string;
+}
+interface loginWithHandleProps {
+	email: string;
+	password: string;
 	setError:(error:string) => void
 }
 const useLogin = () => {
@@ -49,7 +53,7 @@ const useLogin = () => {
 };
 export default useLogin;
 
-function handleInputErrors({ email, password,setError }: loginProps) {
+function handleInputErrors({ email, password,setError }: loginWithHandleProps) {
 	if (!email || !password) {
 		setError("Please fill in all fields");
 		return false;

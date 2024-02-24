@@ -10,6 +10,8 @@ const useGetMessages = () => {
     // Fetch messages from the server and store them in state
     useEffect(() => {
         const getMessages = async () => {
+            if (!selectedConversation) return; // No need to fetch if no conversation is selected
+
             try {
                 setLoading(true);
                 const res = await fetch(`http://localhost:3001/message/${selectedConversation._id}`, {

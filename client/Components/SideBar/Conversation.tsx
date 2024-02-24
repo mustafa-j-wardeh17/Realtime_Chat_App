@@ -28,7 +28,7 @@ const Conversation = ({ index, lastIndx, conversation }: ConversationProps) => {
                     </div>
                 </div>
                 <div className='flex flex-1 justify-between items-center'>
-                    <p className='text-white font-bold tracking-wider md:text-[13px] sm:text-[11px]'>{conversation.fullName}</p>
+                    <p className='text-white capitalize font-bold tracking-wider md:text-[13px] sm:text-[11px]'>{conversation.fullName}</p>
                     <p>{getRandomEmoji()}</p>
                 </div>
             </div>
