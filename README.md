@@ -1,5 +1,5 @@
 # Real-Time Chat App
-<div style="text-align: center;">
+<div style="display:flex;justify-content:center;text-align: center;">
 <img src="https://res.cloudinary.com/dsos2uuov/image/upload/v1708786694/h8zkvzf9nfqzeop2zevt.png" alt="Image Description" width="600" height="320">
 </div>
 This is a real-time chat application built using Next.js in the frontend and Node.js in the backend. It features a login/register page, a sidebar to select friends to chat with, and a chat interface.
