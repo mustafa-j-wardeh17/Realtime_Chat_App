@@ -50,8 +50,10 @@ The frontend of this application is built using Next.js, React, and Tailwind CSS
 cd frontend
 npm install
 cd ../backend
-npm install
+npm install```
 3. Set up environment variables:
+```
 PORT=<your-port>
 MONGODB_URI=<your-mongodb-uri>
 JWT_SECRET=<your-secret>
+```
