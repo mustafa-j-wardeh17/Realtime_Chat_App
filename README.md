@@ -1,4 +1,4 @@
-# Real-Time Chat App
+# Real-Time Chat App Using Socket.io
 <div style="text-align: center;">
   <img src="https://res.cloudinary.com/dsos2uuov/image/upload/v1708786694/h8zkvzf9nfqzeop2zevt.png" alt="Image Description" style="width:100vw;height:30vw">
 </div>
